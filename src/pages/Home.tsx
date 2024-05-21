@@ -1,44 +1,27 @@
-import React from 'react';
+//React
+import React, {useEffect} from 'react';
 import {View, Text, Pressable, Image} from 'react-native';
-
-import {TodoItem} from './TodoItem';
-import {styles} from '../styles';
-
-import {CompHeader, Completed, TabIconCompleted} from './Completed';
-
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {useContext} from 'react';
+
+// Components
+import {TodoItem} from './TodoItem';
+import {CompHeader, Completed, TabIconCompleted} from './Completed';
+import TaskContext from '../context/TaskContext';
+
+//StyleSheet
+import {styles} from '../styles';
+import taskInterface from '../helpers/interface';
 
 const Tab = createBottomTabNavigator();
 
-//HTDD
-// I want to design a data Structure THat contains Items,
-// Each item contains unique Characteristics like Name: String,
-// Details: String, and Status:Boolean
-
-// An item is a task to be carried out in the real world
-
-interface Item {
-  name: string;
-  details: string;
-  isCompleted: boolean;
-}
-
-let tasks: Item[] = [];
-
-let Template = [
-  {
-    name: 'string',
-    details: 'String',
-    status: true,
-  },
-];
-
-console.log(Template[0]);
-
 const HomeStack = () => {
-  // const {height} = useWindowDimensions();
+  //Entry point moved here, since completed screen and home
+  // share the same navigator
+  // Changed my mind cos Native docs says to optimise manually if i
+  //pass it to the screens thru the component prop
+
+  // const { tasks } = useContext(TaskContext);
 
   return (
     <Tab.Navigator
@@ -78,14 +61,29 @@ const HomeStack = () => {
 const Home = (props: {navigation: any}) => {
   const {navigation} = props;
 
+  //EntryPoint of Context for HOme Screen
+  //Its called tasks because thats the name
+  // of the variable i passed from the context provider
+  const {tasks} = useContext(TaskContext);
+
+  {
+    /* Filter for the tasks whose status is true */
+  }
+
+  let unCompleted = tasks.filter(
+    (task: Readonly<taskInterface>) => task.status == false,
+  );
+
+  useEffect(() => {
+    console.log('Home Page rendered');
+  }, []);
+
   return (
     <View style={{...styles.container, flex: 1}}>
       <View style={styles.body}>
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
+        {unCompleted.map((task: taskInterface, index: number) => (
+          <TodoItem task={task} key={index} />
+        ))}
       </View>
 
       <Pressable

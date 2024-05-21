@@ -6,6 +6,7 @@ import {styles} from '../styles';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
 const Edit = () => {
+  
   const {params} = useRoute();
 
   console.log(params);

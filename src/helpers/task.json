@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Organize the Digital Files",
+    "subtitle": "Declutter and Streamline Your Digital Workspace",
+    "details": "Sort all documents into respective folders (e.g., Personal, Work, Projects). Rename files for clarity and consistency. Backup important files to an external hard drive or cloud storage.",
+    "status": true,
+    "id": 1
+  },
+  {
+    "title": "Prepare for a Presentation",
+    "subtitle": "Craft and Practice a Winning Presentation",
+    "details": "Create a PowerPoint slide deck with key points and visuals. Rehearse the presentation to ensure smooth delivery and timing. Prepare handouts or supplementary materials for the audience.",
+    "status": true,
+    "id": 2
+  },
+  {
+    "title": "Plan a Team Building Event",
+    "subtitle": "Foster Team Spirit and Collaboration",
+    "details": "Select a date and venue that accommodates all team members. Arrange activities and games that encourage collaboration and fun. Organize catering and transportation logistics.",
+    "status": true,
+    "id": 3
+  },
+  {
+    "title": "Conduct Market Research",
+    "subtitle": "Analyze Market Trends and Competitors",
+    "details": "Gather data on market trends, customer preferences, and competitor strategies. Create a comprehensive report with findings and actionable insights.",
+    "status": false,
+    "id": 4
+  },
+  {
+    "title": "Develop a Marketing Strategy",
+    "subtitle": "Outline a Plan for Promoting Your Product",
+    "details": "Identify target audience and key marketing channels. Develop a timeline and budget for executing marketing campaigns.",
+    "status": false,
+    "id": 5
+  },
+  {
+    "title": "Update Website Content",
+    "subtitle": "Revise and Enhance Online Presence",
+    "details": "Review website pages for outdated information and broken links. Create new content to improve SEO and user engagement.",
+    "status": true,
+    "id":6
+  },
+  {
+    "title": "Train New Employees",
+    "subtitle": "Onboard and Equip New Team Members",
+    "details": "Develop a training program covering company policies, procedures, and job-specific tasks. Schedule training sessions and track progress.",
+    "status": false,
+    "id": 7
+  },
+  {
+    "title": "Organize Office Supplies",
+    "subtitle": "Maintain and Replenish Office Inventory",
+    "details": "Check current inventory levels and make a list of needed supplies. Place orders and ensure timely delivery and restocking.",
+    "status": true,
+    "id": 8
+  }
+]

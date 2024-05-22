@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {View, Text, TextInput, Pressable, Image} from 'react-native';
 
@@ -6,10 +6,12 @@ import {styles} from '../styles';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
 const Edit = () => {
-  
+  const [task, setTask] = useState({title: '', subtitle: ''});
+
   const {params} = useRoute();
 
   console.log(params);
+  
 
   return (
     <View style={styles.form}>

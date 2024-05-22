@@ -11,9 +11,13 @@ import {Edit, EditHeader} from './src/pages/Edit';
 
 import TaskContextProvider from './src/context/TaskContextProvider';
 
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+
+
+
   return (
     <TaskContextProvider>
       <NavigationContainer>

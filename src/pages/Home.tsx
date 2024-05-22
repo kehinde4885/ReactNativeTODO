@@ -12,6 +12,7 @@ import TaskContext from '../context/TaskContext';
 //StyleSheet
 import {styles} from '../styles';
 import taskInterface from '../helpers/interface';
+import {getData} from '../helpers/storage';
 
 const Tab = createBottomTabNavigator();
 
@@ -59,6 +60,8 @@ const HomeStack = () => {
 // used as a Screen Component
 
 const Home = (props: {navigation: any}) => {
+  //useEffect(() => { console.log('Home use Effect') })
+
   const {navigation} = props;
 
   //EntryPoint of Context for HOme Screen
@@ -70,21 +73,29 @@ const Home = (props: {navigation: any}) => {
     /* Filter for the tasks whose status is true */
   }
 
-  let unCompleted = tasks.filter(
-    (task: Readonly<taskInterface>) => task.status == false,
-  );
+  // let unCompleted = tasks.filter(
+  //   (task: Readonly<taskInterface>) => task.status == false,
+  // );
+
+  let unCompleted: Element[] = [];
 
   useEffect(() => {
-    console.log('Home Page rendered');
-  }, []);
+    //console.log('Home Page rendered');
+  });
+
+  tasks.forEach((task: taskInterface, index: number) => {
+    if (!task.status) {
+      unCompleted.push(<TodoItem task={task} key={index} id={index} />);
+    } else {
+      //console.log(index);
+    }
+  });
+
+  //console.log(unCompleted);
 
   return (
     <View style={{...styles.container, flex: 1}}>
-      <View style={styles.body}>
-        {unCompleted.map((task: taskInterface, index: number) => (
-          <TodoItem task={task} key={index} />
-        ))}
-      </View>
+      <View style={styles.body}>{unCompleted}</View>
 
       <Pressable
         style={styles.fab}

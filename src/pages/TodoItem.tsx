@@ -5,14 +5,14 @@ import {View, Text, Image, Pressable} from 'react-native';
 import {styles} from '../styles';
 import {useNavigation} from '@react-navigation/native';
 
-
 import taskInterface from '../helpers/interface';
 
-const TodoItem = (props:any) => {
+const TodoItem = (props: any) => {
   const navigation = useNavigation();
 
-  let task: taskInterface = props.task
+  let task: taskInterface = props.task;
 
+  let {id} = props;
 
   return (
     <View style={styles.todo}>
@@ -35,7 +35,7 @@ const TodoItem = (props:any) => {
         <Pressable
           onPress={() => {
             console.log('jhkd');
-            navigation.navigate('Edit Task',{itemId:task.id});
+            navigation.navigate('Edit Task', {itemId: id});
           }}>
           <Image
             style={styles.todoImgs}

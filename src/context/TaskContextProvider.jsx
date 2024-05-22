@@ -1,5 +1,7 @@
 import TaskContext from './TaskContext';
 
+import {getData} from '../helpers/storage';
+
 //HTDD
 // I want to design a data Structure THat contains Items,
 // Each item contains unique Characteristics like Name: String,
@@ -15,16 +17,41 @@ import TaskContext from './TaskContext';
 
 // let tasks: Item[] = [];
 
+import {useEffect, useState} from 'react';
 
-
-import taskJson from '../helpers/task.json';
-
-let tasks = JSON.parse(JSON.stringify(taskJson));
+let dummyTasks = [
+  {title: 'dummy Task 1', subtitle: 'Dummy subtitle', status: false},
+];
 
 //Create the User context Provider React Component
 export default TaskContextProvider = ({children}) => {
+  const [tasks, updateTasks] = useState(dummyTasks);
+
+  const [isTasksInStorage, setIsTasksInStorage] = useState(false);
+
+  useEffect(() => {
+    checkValue();
+  }, []);
+
+  async function checkValue() {
+    let value = await getData();
+
+    if (value) {
+      setIsTasksInStorage(true);
+
+      updateTasks(value);
+
+      console.log('value found');
+    }
+  }
+
+  //useEffect(()=>{ console.log('context use Effect')})
+
+  console.log('context rerendered');
+
   return (
-    <TaskContext.Provider value={{ tasks }}>
+    <TaskContext.Provider
+      value={{tasks, updateTasks, setIsTasksInStorage, isTasksInStorage}}>
       {children}
     </TaskContext.Provider>
   );

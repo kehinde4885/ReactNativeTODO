@@ -25,15 +25,19 @@ let dummyTasks = [
 
 //Create the User context Provider React Component
 export default TaskContextProvider = ({children}) => {
-  const [tasks, updateTasks] = useState(dummyTasks);
+  const [tasksFromContext, updateTasks] = useState(dummyTasks);
+
+  console.log(`from Context Provider`,tasksFromContext)
+
 
   const [isTasksInStorage, setIsTasksInStorage] = useState(false);
 
   useEffect(() => {
-    checkValue();
+    initApp();
   }, []);
 
-  async function checkValue() {
+  
+  async function initApp() {
     let value = await getData();
 
     if (value) {
@@ -51,7 +55,7 @@ export default TaskContextProvider = ({children}) => {
 
   return (
     <TaskContext.Provider
-      value={{tasks, updateTasks, setIsTasksInStorage, isTasksInStorage}}>
+      value={{tasksFromContext, updateTasks, setIsTasksInStorage, isTasksInStorage}}>
       {children}
     </TaskContext.Provider>
   );

@@ -67,7 +67,7 @@ const Home = (props: {navigation: any}) => {
   //EntryPoint of Context for HOme Screen
   //Its called tasks because thats the name
   // of the variable i passed from the context provider
-  const {tasks} = useContext(TaskContext);
+  const {tasksFromContext} = useContext(TaskContext);
 
   {
     /* Filter for the tasks whose status is true */
@@ -77,25 +77,42 @@ const Home = (props: {navigation: any}) => {
   //   (task: Readonly<taskInterface>) => task.status == false,
   // );
 
-  let unCompleted: Element[] = [];
+  //let unCompleted: Element[] = [];
 
   useEffect(() => {
     //console.log('Home Page rendered');
   });
 
-  tasks.forEach((task: taskInterface, index: number) => {
-    if (!task.status) {
-      unCompleted.push(<TodoItem task={task} key={index} id={index} />);
-    } else {
-      //console.log(index);
-    }
+  // tasksFromContext.forEach((task: taskInterface, index: number) => {
+  //   if (!task.status) {
+  //     unCompleted.push(<TodoItem task={task} key={index} id={index} />);
+  //   } else {
+  //     //console.log(index);
+  //   }
+  // });
+
+  //The whole reason i used for each in the first place is so
+  //that the id is from the context tasks not
+  //the filtered array
+  let unCompleted = 
+
+  tasksFromContext.map((task: Readonly<taskInterface>, index:number) => {
+    console.log('soso',task)
+    if (task.status == false) {
+      return <TodoItem task={task} id={index} key={index} />
+    };
   });
 
-  //console.log(unCompleted);
+  console.log(unCompleted);
 
   return (
     <View style={{...styles.container, flex: 1}}>
-      <View style={styles.body}>{unCompleted}</View>
+      <View style={styles.body}>
+        {/* {unCompleted.map((element: taskInterface, index: number) => (
+          <TodoItem task={element} id={index} key={index} />
+        ))} */}
+        {unCompleted}
+      </View>
 
       <Pressable
         style={styles.fab}

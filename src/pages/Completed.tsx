@@ -1,33 +1,31 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 
 import {View, Text, TextInput, Pressable, Image} from 'react-native';
 import {TodoItem} from './TodoItem';
 import {styles} from '../styles';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 import TaskContext from '../context/TaskContext';
 
 import taskInterface from '../helpers/interface';
 
-
 const Completed = () => {
+  let {tasksFromContext} = useContext(TaskContext);
 
-  let { tasks } = useContext(TaskContext)
+  let completed = tasksFromContext.map(
+    (task: Readonly<taskInterface>, index:number) => {
+      if (task.status != false) {
+        console.log('here');
+        return <TodoItem task={task} id={index} key={index} />;
+      }
+    },
+  );
 
-  let completed = tasks.filter((task: Readonly<taskInterface>) => (
-    task.status != false
-  ));
+  console.log(completed);
 
-  
   return (
     <View style={[styles.container, {flex: 1}]}>
-      <View style={styles.body}>
-
-      {completed.map((task: taskInterface, index:number) => (
-        <TodoItem task={task} key={index} />
-        ))}
-
-      </View>
+      <View style={styles.body}>{completed}</View>
     </View>
   );
 };
@@ -48,7 +46,6 @@ const CompHeader = () => {
   );
 };
 
-
 const TabIconCompleted = (props: {focused: boolean}) => {
   const {focused} = props;
 
@@ -63,5 +60,4 @@ const TabIconCompleted = (props: {focused: boolean}) => {
   );
 };
 
-
-export {Completed, CompHeader,TabIconCompleted};
+export {Completed, CompHeader, TabIconCompleted};

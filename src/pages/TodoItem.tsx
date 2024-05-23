@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import {View, Text, Image, Pressable} from 'react-native';
 
@@ -6,11 +6,15 @@ import {styles} from '../styles';
 import {useNavigation} from '@react-navigation/native';
 
 import taskInterface from '../helpers/interface';
+import TaskContext from '../context/TaskContext';
+import {createNewStorageEntry} from '../helpers/storage';
 
 const TodoItem = (props: any) => {
   const navigation = useNavigation();
 
   let task: taskInterface = props.task;
+
+  const {tasksFromContext, updateTasks} = useContext(TaskContext);
 
   let {id} = props;
 
@@ -42,13 +46,38 @@ const TodoItem = (props: any) => {
             source={require('../../assets/Pencil.png')}
           />
         </Pressable>
-        <Pressable>
+        <Pressable
+          onPress={() => {
+            console.log('item Deleted');
+            //console.log(id);
+            let array: taskInterface[] = [];
+
+            tasksFromContext.map((element:taskInterface, index:number) => {
+              if (!(index === id)) {
+                array.push(element);
+              }
+            });
+
+            updateTasks(array);
+            createNewStorageEntry(array);
+
+          }}>
           <Image
             style={styles.todoImgs}
             source={require('../../assets/Trash.png')}
           />
         </Pressable>
-        <Pressable>
+        <Pressable
+          onPress={() => {
+            console.log('item Completed');
+            
+            tasksFromContext[id].status = !tasksFromContext[id].status ;
+
+            //console.log(tasksFromContext);
+            let newArray = JSON.parse(JSON.stringify(tasksFromContext));
+            createNewStorageEntry(newArray);
+            updateTasks(newArray);
+          }}>
           <Image
             style={styles.todoImgs}
             source={require('../../assets/CheckCircle.png')}

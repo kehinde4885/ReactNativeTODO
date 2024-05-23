@@ -21,10 +21,12 @@ async function storeData(
 
       let tasks = await getData();
 
-      console.log(tasks);
+      //console.log(tasks);
 
       tasks.push(newTask);
 
+      //This function overwrites the current object in 
+      // Storage
       createNewStorageEntry(tasks);
 
       updateTasks(tasks);
@@ -54,7 +56,7 @@ async function getData() {
 
     let jsonValue = JSON.parse(value);
 
-    console.log(jsonValue);
+    //console.log(jsonValue);
 
     return jsonValue;
   } catch (e) {

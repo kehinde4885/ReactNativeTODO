@@ -55,6 +55,24 @@ Now that you have successfully run the app, let's modify it.
 
    For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
 
+## Font Installation
+Android: Place font in Assets folder
+
+Create react-native.config.js File in root
+
+Paste in the Following: "module.exports = {
+  project: {
+    ios: {},
+    android: {},
+  },
+  assets: ['./assets/fonts'],
+};"
+
+Run "npx react-native-assets" to Link font Files
+
+
+
+
 ## Congratulations! :tada:
 
 You've successfully run and modified your React Native App. :partying_face:
